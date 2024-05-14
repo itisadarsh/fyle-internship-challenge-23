@@ -71,6 +71,7 @@
        [ngClass]="{' text-gray-400 ': 1===this.current_page,'text-blue-500 ':1!==this.current_page}"
        (click)="this.current_page=this.current_page-1"
        (click)="this.languages=[];fetchRepo(this.perPageRepo,this.current_page)"
+       [disabled]="this.current_page===1"
 
        >
 
@@ -84,6 +85,7 @@
        [ngClass]="{' text-gray-400 ': this.current_page===this.no_of_repos,'text-blue-500 ':1!==this.current_page}"
        (click)="this.current_page=this.current_page+1"
        (click)="this.languages=[];fetchRepo(this.perPageRepo,this.current_page)"
+       [disabled]="this.current_page===this.no_of_repos"
        >     
         <p>Newer</p>
         <mat-icon>arrow_forward</mat-icon>
