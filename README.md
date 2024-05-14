@@ -37,38 +37,36 @@ To run this application, you need to have the following installed:
 1. Clone the repository to your local machine:
 
 ```bash
-git clone [repository_url]
+git clone [https://github.com/itisadarsh/fyle-internship-challenge-23.git]
 Navigate to the project directory:
-bash
-Copy code
-cd [project_directory]
+
+cd [fyle-internship-challenge-23]
 Install dependencies:
-bash
-Copy code
+
+
 npm install
 Running the Application
 To run the application locally, use the following command:
 
-bash
-Copy code
+
 ng serve
 This will start a development server, and you can access the application at http://localhost:4200 in your web browser.
 
 Running Unit Tests
 To run the unit tests for the application, use the following command:
 
-bash
-Copy code
+
 ng test
 This will execute the unit tests and provide the test results in the terminal.
 
 Deployment
 The application can be deployed to any cloud service of your choice. Before deployment, make sure to build the project using the following command:
 
-bash
-Copy code
+
 ng build --prod
 This will generate the production-ready files in the dist directory, which can be deployed to a hosting service.
+
+```
 ## Service APIs Functionality
 
 ### ApiService
