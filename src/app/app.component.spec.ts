@@ -1,11 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+import { HttpClientModule } from '@angular/common/http'; 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
     declarations: [AppComponent],
-    imports: [HttpClientModule] // Add HttpClientModule to imports
+    imports: [HttpClientModule] 
   }));
 
   it('should create the app', () => {
@@ -17,14 +17,9 @@ describe('AppComponent', () => {
   it(`should have as title 'fyle-frontend-challenge'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('fyle-frontend-challenge'); // Fix the typo in the expected value
+    expect(app.title).toEqual('fyle-frontend-challenge'); 
   });
 
 
-  // it('should render title', () => {
-  //   const fixture = TestBed.createComponent(AppComponent);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.nativeElement as HTMLElement;
-  //   expect(compiled.querySelector('.content span')?.textContent).toContain('');
-  // });
+  
 });

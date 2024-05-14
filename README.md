@@ -1,43 +1,120 @@
-# Fyle Frontend Challenge
+# GitHub Repositories Listing SPA
 
-## Who is this for?
+This is an Angular 16+ single-page application (SPA) that allows users to search for a GitHub username and view the public repositories belonging to that user.
 
-This challenge is meant for candidates who wish to intern at Fyle and work with our engineering team. The candidate should be able to commit to at least 6 months of dedicated time for internship.
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Features](#features)
+3. [Requirements](#requirements)
+4. [Setup](#setup)
+5. [Running the Application](#running-the-application)
+6. [Running Unit Tests](#running-unit-tests)
+7. [Deployment](#deployment)
+8. [Contact](#contact)
 
-## Why work at Fyle?
+## Introduction
 
-Fyle is a fast-growing Expense Management SaaS product. We are ~40 strong engineering team at the moment. 
+This application was developed as part of the Fyle Internship Challenge. It provides a user-friendly interface for searching GitHub usernames and viewing their public repositories.
 
-We are an extremely transparent organization. Check out our [careers page](https://careers.fylehq.com) that will give you a glimpse of what it is like to work at Fyle. Also, check out our Glassdoor reviews [here](https://www.glassdoor.co.in/Reviews/Fyle-Reviews-E1723235.htm). You can read stories from our teammates [here](https://stories.fylehq.com).
+## Features
 
-## Challenge outline
+- Search for GitHub usernames
+- View public repositories of the searched user
+- Pagination for repositories
+- Display repository topics and languages
+- Error handling for invalid usernames or failed API requests
 
-This challenge involves implementing application using github api. 
+## Requirements
 
-The services that you need to use are already implemented - check out ApiService.
+To run this application, you need to have the following installed:
 
-You can see details of this challenge [here](https://fyleuniverse.notion.site/fyleuniverse/Fyle-Frontend-development-challenge-cb5085e5e0864e769e7b98c694400aaa)
+- Node.js
+- Angular CLI
+- Git (for cloning the repository)
 
-__Note__ - This challenge is in angular. We work on angular frameworks & after you join we expect the same from you. Hence it is required to complete this assignement in angular itself.
+## Setup
 
-## What happens next?
+1. Clone the repository to your local machine:
 
-You will hear back within 48 hours from us via email.
+```bash
+git clone [repository_url]
+Navigate to the project directory:
+bash
+Copy code
+cd [project_directory]
+Install dependencies:
+bash
+Copy code
+npm install
+Running the Application
+To run the application locally, use the following command:
 
-## Installation
+bash
+Copy code
+ng serve
+This will start a development server, and you can access the application at http://localhost:4200 in your web browser.
 
-1. Fork this repository to your github account.
-2. Clone the forked repository and proceed with steps mentioned below.
+Running Unit Tests
+To run the unit tests for the application, use the following command:
 
-### Install requirements
-* Install angular cli [Ref](https://angular.io/cli)
-* `npm install` in this repository 
+bash
+Copy code
+ng test
+This will execute the unit tests and provide the test results in the terminal.
 
-## Development server
+Deployment
+The application can be deployed to any cloud service of your choice. Before deployment, make sure to build the project using the following command:
 
-Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+bash
+Copy code
+ng build --prod
+This will generate the production-ready files in the dist directory, which can be deployed to a hosting service.
+## Service APIs Functionality
 
-## Further help
+### ApiService
+#One Thing to remember that api are cached so after one call to same person again unit test will fail to fetch the data as the data is stored in localstorage
+The `ApiService` provides methods for interacting with the GitHub API to fetch user details, repositories, and languages.
 
-Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
-Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+#### `getUser(githubUsername: string)`
+
+This method fetches user details for the given GitHub username.
+
+- **Parameters**:
+  - `githubUsername`: The GitHub username of the user to fetch details for.
+  
+- **Return Value**: An Observable emitting user details in the form of an object.
+
+#### `getRepos(githubUsername: string, per_page: number, curr_page: number)`
+
+This method fetches repositories for the given GitHub username, with support for pagination.
+
+- **Parameters**:
+  - `githubUsername`: The GitHub username of the user whose repositories to fetch.
+  - `per_page`: The number of repositories per page.
+  - `curr_page`: The current page number.
+
+- **Return Value**: An Observable emitting an array of repository objects.
+
+#### `getLanguages(githubUsername: string, project: string)`
+
+This method fetches languages for the given GitHub project.
+
+- **Parameters**:
+  - `githubUsername`: The GitHub username of the owner of the project.
+  - `project`: The name of the GitHub project.
+
+- **Return Value**: An Observable emitting an array of language strings used in the project.
+
+Repositiory-list Component Functionality
+Component Creation:
+
+Description: Verifies that the RepositoryListComponent is successfully created.
+Expected Outcome: The test passes if the component instance is truthy, indicating that the component is successfully created.
+Displaying Loader when Info is Not Fetched:
+
+Description: Tests whether the loader component is displayed when the info_fetched flag is false, indicating that information is not yet fetched.
+Expected Outcome: The test passes if the loader component is found in the DOM when info_fetched is false.
+Displaying Languages when Info is Fetched:
+
+Description: Tests whether the languages are displayed when info_fetched is true and language data is provided.
+Expected Outcome: The test passes if language elements are displayed with the correct data when info_fetched is true and languages are provided.
