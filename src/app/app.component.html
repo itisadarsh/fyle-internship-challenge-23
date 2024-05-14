@@ -1,5 +1,100 @@
-<div class="grid h-screen place-items-center">
-  <div class="font-bold text-3xl">
-    Fyle Internship Challenge
+<div class="grid h-screen place-items-center p-6 gap-y-4" >
+  <nav class="w-2/3 flex my-4 justify-center border-2 rounded-r-lg">
+    <input  [value]="searchName" (input)="onChange($event)" type="text" class="w-[80%] px-1" placeholder="Enter github username..." name="search">
+    <button class="bg-blue-500 w-[20%] text-white p-1 rounded-r-lg min-w-fit" (click)="search()">
+      Search
+    </button>
+  </nav>
+
+  <!-- <div  > -->
+ <div class="w-full h-[80vh]" *ngIf="this.visibility === false && this.searched===true && this.error===false">
+    <app-loader ></app-loader>
   </div>
+  
+
+<div *ngIf="this.error===true">
+  <app-error></app-error>
+</div>
+
+<div class="w-11/12 auto-mx flex flex-col mb-16" *ngIf="this.visibility === true && this.error===false">
+  <div class="w-11/12 auto-mx flex flex-col mb-16">
+
+<ng-container>
+  <app-user-info [user]="user"></app-user-info>
+</ng-container>
+  </div>
+
+  <div class=" w-full flex gap-4 rounded-md">
+   <span class="font-medium"> Per Page repos: </span>
+    <select name="option" id="" class="w-[100px] rounded-md border-2" [value]="perPageRepo" (input)="onChange($event)" >
+      <option value="10">10</option>
+      <option value="20">20</option>
+      <option value="40">40</option>
+      <option value="60">60</option>
+      <option value="80">80</option>
+      <option value="100">100</option>
+    </select>
+  </div>
+  
+
+
+  <div class="my-10 mb-32 pb-64">
+
+    <app-repository-list 
+    [info_fetched]="info_fetched"
+    [languages]="languages"
+    ></app-repository-list>
+
+
+  </div>
+   <footer class="fixed  flex mt-10 flex-col gap-4 justify-center items-center bottom-0 bg-white w-full h-2/6">
+
+    <div class="w-3/5 flex flex-col gap-4 my-10 py-12">
+    <div class="flex  items-center justify-center">
+
+      <div class="border-2 border-gray-300 flex items-center text-blue-500 p-2"><mat-icon>navigate_before</mat-icon></div>
+
+      <ng-container *ngFor="let _ of getRange(no_of_repos); let i=index">
+
+        <div class="border-2 px-3 border-gray-300 flex items-center p-2"  [ngClass]="{'bg-blue-500 text-white': i+1===this.current_page,'text-blue-500 bg-white':i+1!==this.current_page}">{{i+1}}</div>
+
+      </ng-container>
+      <div class="border-2 p-2 border-gray-300 flex items-center text-blue-500"><mat-icon>navigate_next</mat-icon></div>
+
+    </div>
+
+    <div class="flex justify-between">
+
+      <button class="flex justify-center border-2
+       border-gray-300 
+       px-4 p-2 rounded-2xl items-center"
+       [ngClass]="{' text-gray-400 ': 1===this.current_page,'text-blue-500 ':1!==this.current_page}"
+       (click)="this.current_page=this.current_page-1"
+       (click)="this.languages=[];fetchRepo(this.perPageRepo,this.current_page)"
+
+       >
+
+      
+        <mat-icon>arrow_back</mat-icon>
+        <p>Older</p>
+      </button>
+      <button class="flex justify-center px-4 
+      border-2 border-gray-300 text-blue-400 
+       p-2 rounded-2xl items-center"
+       [ngClass]="{' text-gray-400 ': this.current_page===this.no_of_repos,'text-blue-500 ':1!==this.current_page}"
+       (click)="this.current_page=this.current_page+1"
+       (click)="this.languages=[];fetchRepo(this.perPageRepo,this.current_page)"
+       >     
+        <p>Newer</p>
+        <mat-icon>arrow_forward</mat-icon>
+
+      </button>
+
+    </div>
+
+  </div>
+
+  </footer>
+
+</div>
 </div>
